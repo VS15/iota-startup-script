@@ -44,6 +44,9 @@ mv db/* /iri/data/mainnetdb/
 ###Final Launch###
 docker run -d --net=host --name iota-node-1 -e MIN_MEMORY=2G -e MAX_MEMORY=4G -e API_PORT=14265 -e UDP_PORT=14600 -e TCP_PORT=15600 -v /iri/data:/iri/data -v /iri/conf/neighbors:/iri/conf/neighbors bluedigits/iota-node:latest
 
+###REMOVE DOWNLOADED ARCHIVE###
+rm -rvf db.tar.bz2
+
 ###DISPLAY STATS###
 echo "Your nodes and Neighbors Stats"
 
