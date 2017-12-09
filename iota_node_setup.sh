@@ -38,7 +38,7 @@ wget https://iota.lukaseder.de/downloads/db.tar.bz2
 tar xvf db.tar.bz2 &&
 
 rm -vf /iri/data/mainnetdb/*
-
+ls -ld /iri/data/mainnetdb/
 mv db/* /iri/data/mainnetdb/  
 
 ###Final Launch###
@@ -48,6 +48,7 @@ docker run -d --net=host --name iota-node-1 -e MIN_MEMORY=2G -e MAX_MEMORY=4G -e
 rm -rvf db.tar.bz2
 
 ###DISPLAY STATS###
+sleep 35
 echo "Your nodes and Neighbors Stats"
 
 curl http://localhost:14265 -X POST -H 'Content-Type: application/json' -H 'X-IOTA-API-Version: 1.4' -d '{"command":"getNeighbors"}'|jq
