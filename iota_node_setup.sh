@@ -34,18 +34,23 @@ sudo service docker restart
 
 ###UPDATE TANGLE DB###
 
-wget https://iota.lukaseder.de/downloads/db.tar.bz2
-tar xvf db.tar.bz2 &&
+wget https://iota.lukaseder.de/downloads/db.tar.gz
+tar xvzf db.tar.gz &&
 
-rm -vf /iri/data/mainnetdb/*
-ls -ld /iri/data/mainnetdb/
+rm -rf /iri/data/mainnet*
+
+mkdir -p /iri/data/mainnetdb
+ls -ld /iri/data/mainnetdb
 mv db/* /iri/data/mainnetdb/  
+chown -R root:root /iri/data/mainnetdb
+rm -vf /iri/data/mainnetdb/LOCK
 
 ###Final Launch###
 docker run -d --net=host --name iota-node-1 -e MIN_MEMORY=2G -e MAX_MEMORY=4G -e API_PORT=14265 -e UDP_PORT=14600 -e TCP_PORT=15600 -v /iri/data:/iri/data -v /iri/conf/neighbors:/iri/conf/neighbors bluedigits/iota-node:latest
 
 ###REMOVE DOWNLOADED ARCHIVE###
 rm -rvf db.tar.bz2
+rm -rvf db
 
 ###DISPLAY STATS###
 sleep 35
