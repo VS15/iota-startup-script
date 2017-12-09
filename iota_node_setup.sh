@@ -30,14 +30,16 @@ docker run -d --net=host --name iota-node-1 -e MIN_MEMORY=2G -e MAX_MEMORY=4G -e
 ###INTIAL STOP###
 
 sudo docker stop iota-node-1 && sudo docker rm iota-node-1
+sudo docker rmi bluedigits/iota-node
 sudo service docker restart
 
 ###UPDATE TANGLE DB###
 
-wget https://iota.lukaseder.de/downloads/db.tar.gz
-tar xvzf db.tar.gz &&
 
 rm -rf /iri/data/mainnet*
+
+wget https://iota.lukaseder.de/downloads/db.tar.gz
+tar xvzf db.tar.gz &&
 
 mkdir -p /iri/data/mainnetdb
 ls -ld /iri/data/mainnetdb
